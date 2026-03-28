@@ -5,8 +5,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 def load_data(path):
-	"""Load the email dataset from a CSV file."""
-	return pd.read_csv(path)
+	"""Load the email dataset from a CSV file, trying utf-8 then latin1 encoding."""
+	try:
+		return pd.read_csv(path, encoding='utf-8')
+	except UnicodeDecodeError:
+		return pd.read_csv(path, encoding='latin1')
 
 def clean_text(text):
 	import string
