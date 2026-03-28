@@ -15,7 +15,12 @@ df = load_data(raw_data_path)
 df = preprocess_data(df, text_col='v2')
 
 # 3. Vectorize text
+
 X, vectorizer = vectorize_text(df, text_col='clean_text')
+
+# Save the vectorizer for later use
+import joblib
+joblib.dump(vectorizer, os.path.join('models', 'vectorizer.pkl'))
 
 # 4. Prepare labels (use 'v1' for label column)
 y = df['v1']
