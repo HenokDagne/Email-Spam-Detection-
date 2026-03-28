@@ -1,1 +1,3 @@
-# Helper functions for the project
+
+def print_separator():
+	print("\n" + "-"*50 + "\n")
